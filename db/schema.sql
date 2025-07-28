@@ -38,7 +38,7 @@ CREATE TABLE measurements_archive (
     PRIMARY KEY (timestamp, building_id, location_id, measure_type_id)
 );
 
--- 建屋パーティション_物流倉庫
+-- 建屋パーティション_配送センター
 CREATE TABLE measurements_building_1 PARTITION OF measurements
 FOR VALUES IN (1);
 
