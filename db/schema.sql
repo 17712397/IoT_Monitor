@@ -1,10 +1,12 @@
 -- 建屋
+DROP TABLE IF EXISTS buildings CASCADE;
 CREATE TABLE buildings (
     building_id SERIAL PRIMARY KEY,
     building_name TEXT NOT NULL UNIQUE
 );
 
 -- 測定箇所
+DROP TABLE IF EXISTS locations CASCADE;
 CREATE TABLE locations (
     location_id SERIAL PRIMARY KEY,
     building_id INT NOT NULL REFERENCES buildings(building_id) ON DELETE CASCADE,
@@ -13,12 +15,14 @@ CREATE TABLE locations (
 );
 
 -- 測定種
+DROP TABLE IF EXISTS measure_types CASCADE;
 CREATE TABLE measure_types (
     measure_type_id SERIAL PRIMARY KEY,
     measure_type TEXT NOT NULL UNIQUE
 );
 
 -- 測定データ
+DROP TABLE IF EXISTS measurements CASCADE;
 CREATE TABLE measurements (
     timestamp TIMESTAMP NOT NULL,
     building_id INT NOT NULL REFERENCES buildings(building_id) ON DELETE CASCADE,
@@ -29,6 +33,7 @@ CREATE TABLE measurements (
 ) PARTITION BY LIST (building_id);
 
 -- 測定データ_アーカイブ
+DROP TABLE IF EXISTS measurements_archive CASCADE;
 CREATE TABLE measurements_archive (
     timestamp TIMESTAMP NOT NULL,
     building_id INT NOT NULL,
