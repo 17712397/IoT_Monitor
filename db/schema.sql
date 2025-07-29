@@ -62,15 +62,21 @@ CREATE TABLE measurements_archive (
 
 -- 建屋パーティション_配送センター
 CREATE TABLE measurements_building_1 PARTITION OF measurements
-    FOR VALUES IN (1) PARTITION BY RANGE(timestamp);
+    FOR VALUES IN (1);
+-- ダミークエリのために一旦退避
+--    FOR VALUES IN (1) PARTITION BY RANGE(timestamp);
 
 -- 建屋パーティション_研究棟
 CREATE TABLE measurements_building_2 PARTITION OF measurements
-    FOR VALUES IN (2) PARTITION BY RANGE(timestamp);
+    FOR VALUES IN (2);
+-- ダミークエリのために一旦退避
+--    FOR VALUES IN (2) PARTITION BY RANGE(timestamp);
 
 -- 建屋パーティション_品質管理棟
 CREATE TABLE measurements_building_3 PARTITION OF measurements
-    FOR VALUES IN (3) PARTITION BY RANGE(timestamp);
+    FOR VALUES IN (3);
+-- ダミークエリのために一旦退避
+--    FOR VALUES IN (3) PARTITION BY RANGE(timestamp);
 
 -- インデックス_時系列クエリ
 CREATE INDEX idx_measurements_timestamp_desc
