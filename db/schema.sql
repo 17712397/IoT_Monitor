@@ -64,6 +64,7 @@ CREATE TABLE measurements_archive (
 CREATE TABLE measurements_building_1 PARTITION OF measurements
     FOR VALUES IN (1);
 -- ダミークエリのために一旦退避
+-- CREATE TABLE measurements_building_1 PARTITION OF measurements
 --    FOR VALUES IN (1) PARTITION BY RANGE(timestamp);
 
 -- 建屋パーティション_研究棟
