@@ -1,0 +1,63 @@
+@startuml er
+
+entity "buildings" {
+    *building_id: integer <<PK>>  -- 建屋ID (主キー)
+    --
+    building_code: varchar(20)  -- 建屋コード
+    building_name: text         -- 建屋名
+    created_at: timestamptz     -- 作成日時
+    updated_at: timestamptz     -- 更新日時
+}
+
+entity "locations" {
+    *location_id: integer <<PK>> -- 測定箇所ID (主キー)
+    --
+    building_id: integer <<FK>>  -- 建屋ID (外部キー)
+    location_code: varchar(50)   -- 測定箇所コード
+    location_name: text          -- 測定箇所名
+    floor_number: integer        -- 階層番号
+    is_active: boolean           -- 有効フラグ
+    created_at: timestamptz      -- 作成日時
+    updated_at: timestamptz      -- 更新日時
+}
+
+entity "measure_types" {
+    *measure_type_id: integer <<PK>> -- 測定種ID (主キー)
+    --
+    measure_type_code: varchar(20)   -- 測定種コード
+    measure_type_name: text          -- 測定種名
+    unit: varchar(20)                -- 単位
+    min_valid_value: decimal(10, 3)  -- 計測可能範囲(最小値)
+    max_valid_value: decimal(10, 3)  -- 計測可能範囲(最大値)
+    created_at: timestamptz          -- 作成日時
+}
+
+entity "measurements" {
+    *timestamp: timestamptz <<PK>>   -- 計測日時 (主キー)
+    *building_id: integer <<PK>>     -- 建屋ID (主キー)
+    *location_id: integer <<PK>>     -- 測定箇所ID (主キー)
+    *measure_type_id: integer <<PK>> -- 測定種ID (主キー)
+    --
+    value: double precision          -- 測定値
+}
+
+entity "measurements_archive" {
+    *timestamp: timestamptz <<PK>>   -- 計測日時 (主キー)
+    *building_id: integer <<PK>>     -- 建屋ID (主キー)
+    *location_id: integer <<PK>>     -- 測定箇所ID (主キー)
+    *measure_type_id: integer <<PK>> -- 測定種ID (主キー)
+    --
+    value: double precision          -- 保管済み測定値
+    archive_at: timestamptz          -- アーカイブ日時
+}
+
+' リレーションシップ定義
+buildings ||--o{ locations : "building_id (FK)"
+measure_types ||--o{ measurements : "measure_type_id (FK)"
+measure_types ||--o{ measurements_archive : "measure_type_id (FK)"
+locations ||--o{ measurements : "location_id (FK)"
+locations ||--o{ measurements_archive : "location_id (FK)"
+buildings ||--o{ measurements : "building_id (FK)"
+buildings ||--o{ measurements_archive : "building_id (FK)"
+
+@enduml
