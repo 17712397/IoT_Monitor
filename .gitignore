@@ -1,2 +1,7 @@
+db/venv/*
 superset/venv/*
-.env
+
+# 最終的にignore
+# db/.env
+# superset/.env
+# superset/superset_config.py
