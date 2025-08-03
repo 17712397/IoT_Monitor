@@ -1,0 +1,241 @@
+2025-08-03 14:15:31.544 | INFO     | __main__:start:433 - IoTデータ処理システムを開始します
+2025-08-03 14:15:31.606 | ERROR    | __main__:connect:104 - データベース接続エラー: connection to server at "localhost" (::1), port 5432 failed: FATAL:  password authentication failed for user "postgres"
+
+2025-08-03 14:17:06.957 | INFO     | __main__:start:433 - IoTデータ処理システムを開始します
+2025-08-03 14:17:07.031 | INFO     | __main__:connect:101 - データベースに接続しました
+2025-08-03 14:17:07.032 | INFO     | __main__:_load_tag_cache:127 - 8個のタグ情報をキャッシュしました
+2025-08-03 14:17:07.034 | INFO     | __main__:start:452 - ファイル監視を開始: ./data/incoming
+2025-08-03 14:17:23.339 | INFO     | __main__:start:463 - 終了シグナルを受信しました
+2025-08-03 14:17:23.340 | INFO     | __main__:stop:469 - IoTデータ処理システムを停止します
+2025-08-03 14:17:23.340 | INFO     | __main__:disconnect:111 - データベース接続を切断しました
+2025-08-03 14:19:15.215 | INFO     | __main__:start:433 - IoTデータ処理システムを開始します
+2025-08-03 14:19:15.281 | INFO     | __main__:connect:101 - データベースに接続しました
+2025-08-03 14:19:15.282 | INFO     | __main__:_load_tag_cache:127 - 8個のタグ情報をキャッシュしました
+2025-08-03 14:19:15.283 | INFO     | __main__:start:452 - ファイル監視を開始: ./data/incoming
+2025-08-03 14:35:44.402 | INFO     | __main__:on_created:410 - 新規ファイル検出: ./data/incoming\dummy.xlsx
+2025-08-03 14:35:44.403 | INFO     | __main__:process_file:179 - ファイル処理開始: ./data/incoming\dummy.xlsx
+2025-08-03 14:35:44.412 | DEBUG    | __main__:_read_excel_file:219 - 最大列数: 18
+2025-08-03 14:35:44.412 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列4 = Tag0059
+2025-08-03 14:35:44.412 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列6 = Tag0058
+2025-08-03 14:35:44.415 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列8 = Tag0061
+2025-08-03 14:35:44.415 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列10 = Tag0060
+2025-08-03 14:35:44.415 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列12 = Tag0019
+2025-08-03 14:35:44.415 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列14 = Tag0020
+2025-08-03 14:35:44.415 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列16 = Tag0009
+2025-08-03 14:35:44.415 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列18 = Tag0010
+2025-08-03 14:35:44.415 | INFO     | __main__:_read_excel_file:232 - 8個の有効なタグを発見
+2025-08-03 14:35:44.419 | ERROR    | __main__:insert_measurements:164 - データ挿入エラー: there is no unique or exclusion constraint matching the ON CONFLICT specification
+
+2025-08-03 14:35:44.426 | ERROR    | __main__:process_file:200 - ファイル処理エラー: ./data/incoming\dummy.xlsx - there is no unique or exclusion constraint matching the ON CONFLICT specification
+
+2025-08-03 14:35:44.427 | ERROR    | __main__:process_file:201 - Traceback (most recent call last):
+  File "C:\Users\yukih\projects\IoT_Monitor\db\scripts\data_processor.py", line 184, in process_file
+    data = self._read_excel_file(file_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\yukih\projects\IoT_Monitor\db\scripts\data_processor.py", line 296, in _read_excel_file
+    self.db_manager.insert_measurements(measurements)
+  File "C:\Users\yukih\projects\IoT_Monitor\db\scripts\data_processor.py", line 147, in insert_measurements
+    execute_values(
+  File "C:\Users\yukih\projects\IoT_Monitor\db\venv\Lib\site-packages\psycopg2\extras.py", line 1299, in execute_values
+    cur.execute(b''.join(parts))
+psycopg2.errors.InvalidColumnReference: there is no unique or exclusion constraint matching the ON CONFLICT specification
+
+
+2025-08-03 14:40:53.326 | INFO     | __main__:start:463 - 終了シグナルを受信しました
+2025-08-03 14:40:53.327 | INFO     | __main__:stop:469 - IoTデータ処理システムを停止します
+2025-08-03 14:40:53.328 | INFO     | __main__:disconnect:111 - データベース接続を切断しました
+2025-08-03 14:41:34.961 | INFO     | __main__:start:433 - IoTデータ処理システムを開始します
+2025-08-03 14:41:35.026 | INFO     | __main__:connect:101 - データベースに接続しました
+2025-08-03 14:41:35.027 | INFO     | __main__:_load_tag_cache:127 - 8個のタグ情報をキャッシュしました
+2025-08-03 14:41:35.029 | INFO     | __main__:start:452 - ファイル監視を開始: ./data/incoming
+2025-08-03 14:41:47.816 | INFO     | __main__:on_created:410 - 新規ファイル検出: ./data/incoming\dummy.xlsx
+2025-08-03 14:41:47.817 | INFO     | __main__:process_file:179 - ファイル処理開始: ./data/incoming\dummy.xlsx
+2025-08-03 14:41:47.817 | DEBUG    | __main__:_read_excel_file:219 - 最大列数: 18
+2025-08-03 14:41:47.827 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列4 = Tag0059
+2025-08-03 14:41:47.827 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列6 = Tag0058
+2025-08-03 14:41:47.829 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列8 = Tag0061
+2025-08-03 14:41:47.829 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列10 = Tag0060
+2025-08-03 14:41:47.830 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列12 = Tag0019
+2025-08-03 14:41:47.831 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列14 = Tag0020
+2025-08-03 14:41:47.831 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列16 = Tag0009
+2025-08-03 14:41:47.832 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列18 = Tag0010
+2025-08-03 14:41:47.832 | INFO     | __main__:_read_excel_file:232 - 8個の有効なタグを発見
+2025-08-03 14:41:47.837 | ERROR    | __main__:insert_measurements:164 - データ挿入エラー: there is no unique or exclusion constraint matching the ON CONFLICT specification
+
+2025-08-03 14:41:47.837 | ERROR    | __main__:process_file:200 - ファイル処理エラー: ./data/incoming\dummy.xlsx - there is no unique or exclusion constraint matching the ON CONFLICT specification
+
+2025-08-03 14:41:47.840 | ERROR    | __main__:process_file:201 - Traceback (most recent call last):
+  File "C:\Users\yukih\projects\IoT_Monitor\db\scripts\data_processor.py", line 184, in process_file
+    data = self._read_excel_file(file_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\yukih\projects\IoT_Monitor\db\scripts\data_processor.py", line 296, in _read_excel_file
+    self.db_manager.insert_measurements(measurements)
+  File "C:\Users\yukih\projects\IoT_Monitor\db\scripts\data_processor.py", line 147, in insert_measurements
+    execute_values(
+  File "C:\Users\yukih\projects\IoT_Monitor\db\venv\Lib\site-packages\psycopg2\extras.py", line 1299, in execute_values
+    cur.execute(b''.join(parts))
+psycopg2.errors.InvalidColumnReference: there is no unique or exclusion constraint matching the ON CONFLICT specification
+
+
+2025-08-03 14:45:45.793 | INFO     | __main__:start:463 - 終了シグナルを受信しました
+2025-08-03 14:45:45.794 | INFO     | __main__:stop:469 - IoTデータ処理システムを停止します
+2025-08-03 14:45:45.795 | INFO     | __main__:disconnect:111 - データベース接続を切断しました
+2025-08-03 14:45:51.127 | INFO     | __main__:start:433 - IoTデータ処理システムを開始します
+2025-08-03 14:45:51.293 | INFO     | __main__:connect:101 - データベースに接続しました
+2025-08-03 14:45:51.294 | INFO     | __main__:_load_tag_cache:127 - 8個のタグ情報をキャッシュしました
+2025-08-03 14:45:51.295 | INFO     | __main__:start:452 - ファイル監視を開始: ./data/incoming
+2025-08-03 14:46:01.663 | INFO     | __main__:on_created:410 - 新規ファイル検出: ./data/incoming\dummy.xlsx
+2025-08-03 14:46:01.663 | INFO     | __main__:process_file:179 - ファイル処理開始: ./data/incoming\dummy.xlsx
+2025-08-03 14:46:01.669 | DEBUG    | __main__:_read_excel_file:219 - 最大列数: 18
+2025-08-03 14:46:01.674 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列4 = Tag0059
+2025-08-03 14:46:01.674 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列6 = Tag0058
+2025-08-03 14:46:01.674 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列8 = Tag0061
+2025-08-03 14:46:01.674 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列10 = Tag0060
+2025-08-03 14:46:01.674 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列12 = Tag0019
+2025-08-03 14:46:01.674 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列14 = Tag0020
+2025-08-03 14:46:01.678 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列16 = Tag0009
+2025-08-03 14:46:01.678 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列18 = Tag0010
+2025-08-03 14:46:01.678 | INFO     | __main__:_read_excel_file:232 - 8個の有効なタグを発見
+2025-08-03 14:46:01.684 | ERROR    | __main__:insert_measurements:164 - データ挿入エラー: there is no unique or exclusion constraint matching the ON CONFLICT specification
+
+2025-08-03 14:46:01.684 | ERROR    | __main__:process_file:200 - ファイル処理エラー: ./data/incoming\dummy.xlsx - there is no unique or exclusion constraint matching the ON CONFLICT specification
+
+2025-08-03 14:46:01.684 | ERROR    | __main__:process_file:201 - Traceback (most recent call last):
+  File "C:\Users\yukih\projects\IoT_Monitor\db\scripts\data_processor.py", line 184, in process_file
+    data = self._read_excel_file(file_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\yukih\projects\IoT_Monitor\db\scripts\data_processor.py", line 296, in _read_excel_file
+    self.db_manager.insert_measurements(measurements)
+  File "C:\Users\yukih\projects\IoT_Monitor\db\scripts\data_processor.py", line 147, in insert_measurements
+    execute_values(
+  File "C:\Users\yukih\projects\IoT_Monitor\db\venv\Lib\site-packages\psycopg2\extras.py", line 1299, in execute_values
+    cur.execute(b''.join(parts))
+psycopg2.errors.InvalidColumnReference: there is no unique or exclusion constraint matching the ON CONFLICT specification
+
+
+2025-08-03 14:50:25.483 | INFO     | __main__:start:463 - 終了シグナルを受信しました
+2025-08-03 14:50:25.483 | INFO     | __main__:stop:469 - IoTデータ処理システムを停止します
+2025-08-03 14:50:25.483 | INFO     | __main__:disconnect:111 - データベース接続を切断しました
+2025-08-03 14:51:30.797 | INFO     | __main__:start:433 - IoTデータ処理システムを開始します
+2025-08-03 14:51:30.867 | INFO     | __main__:connect:101 - データベースに接続しました
+2025-08-03 14:51:30.869 | INFO     | __main__:_load_tag_cache:127 - 8個のタグ情報をキャッシュしました
+2025-08-03 14:51:30.870 | INFO     | __main__:start:452 - ファイル監視を開始: ./data/incoming
+2025-08-03 14:51:30.871 | INFO     | __main__:_process_existing_files:482 - 既存ファイル発見: data\incoming\dummy.xlsx
+2025-08-03 14:51:30.871 | INFO     | __main__:process_file:179 - ファイル処理開始: data\incoming\dummy.xlsx
+2025-08-03 14:51:30.880 | DEBUG    | __main__:_read_excel_file:219 - 最大列数: 18
+2025-08-03 14:51:30.881 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列4 = Tag0059
+2025-08-03 14:51:30.882 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列6 = Tag0058
+2025-08-03 14:51:30.883 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列8 = Tag0061
+2025-08-03 14:51:30.883 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列10 = Tag0060
+2025-08-03 14:51:30.884 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列12 = Tag0019
+2025-08-03 14:51:30.885 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列14 = Tag0020
+2025-08-03 14:51:30.886 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列16 = Tag0009
+2025-08-03 14:51:30.886 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列18 = Tag0010
+2025-08-03 14:51:30.886 | INFO     | __main__:_read_excel_file:232 - 8個の有効なタグを発見
+2025-08-03 14:51:30.898 | INFO     | __main__:insert_measurements:160 - 384件のデータを挿入しました
+2025-08-03 14:51:30.898 | INFO     | __main__:_read_excel_file:299 - 48行を処理しました
+2025-08-03 14:51:30.899 | ERROR    | __main__:process_file:200 - ファイル処理エラー: data\incoming\dummy.xlsx - [WinError 32] プロセスはファイルにアクセスできません。別のプロセスが使用中です。: 'data\\incoming\\dummy.xlsx' -> 'data\\processed\\20250803_145130_dummy.xlsx'
+2025-08-03 14:51:30.900 | ERROR    | __main__:process_file:201 - Traceback (most recent call last):
+  File "C:\Users\yukih\projects\IoT_Monitor\db\scripts\data_processor.py", line 194, in process_file
+    self._move_processed_file(file_path)
+  File "C:\Users\yukih\projects\IoT_Monitor\db\scripts\data_processor.py", line 363, in _move_processed_file
+    Path(file_path).rename(new_path)
+  File "C:\Users\yukih\AppData\Local\Programs\Python\Python311\Lib\pathlib.py", line 1175, in rename
+    os.rename(self, target)
+PermissionError: [WinError 32] プロセスはファイルにアクセスできません。別のプロセスが使用中です。: 'data\\incoming\\dummy.xlsx' -> 'data\\processed\\20250803_145130_dummy.xlsx'
+
+2025-08-03 14:51:30.901 | INFO     | __main__:stop:469 - IoTデータ処理システムを停止します
+2025-08-03 14:51:30.902 | INFO     | __main__:disconnect:111 - データベース接続を切断しました
+2025-08-03 14:51:44.438 | INFO     | __main__:start:433 - IoTデータ処理システムを開始します
+2025-08-03 14:51:44.615 | INFO     | __main__:connect:101 - データベースに接続しました
+2025-08-03 14:51:44.617 | INFO     | __main__:_load_tag_cache:127 - 8個のタグ情報をキャッシュしました
+2025-08-03 14:51:44.618 | INFO     | __main__:start:452 - ファイル監視を開始: ./data/incoming
+2025-08-03 14:51:55.336 | INFO     | __main__:on_created:410 - 新規ファイル検出: ./data/incoming\dummy.xlsx
+2025-08-03 14:51:55.336 | INFO     | __main__:process_file:179 - ファイル処理開始: ./data/incoming\dummy.xlsx
+2025-08-03 14:51:55.345 | DEBUG    | __main__:_read_excel_file:219 - 最大列数: 18
+2025-08-03 14:51:55.346 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列4 = Tag0059
+2025-08-03 14:51:55.346 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列6 = Tag0058
+2025-08-03 14:51:55.346 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列8 = Tag0061
+2025-08-03 14:51:55.346 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列10 = Tag0060
+2025-08-03 14:51:55.346 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列12 = Tag0019
+2025-08-03 14:51:55.346 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列14 = Tag0020
+2025-08-03 14:51:55.346 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列16 = Tag0009
+2025-08-03 14:51:55.351 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列18 = Tag0010
+2025-08-03 14:51:55.351 | INFO     | __main__:_read_excel_file:232 - 8個の有効なタグを発見
+2025-08-03 14:51:55.366 | INFO     | __main__:insert_measurements:160 - 384件のデータを挿入しました
+2025-08-03 14:51:55.367 | INFO     | __main__:_read_excel_file:299 - 48行を処理しました
+2025-08-03 14:51:55.367 | ERROR    | __main__:process_file:200 - ファイル処理エラー: ./data/incoming\dummy.xlsx - [WinError 32] プロセスはファイルにアクセスできません。別のプロセスが使用中です。: 'data\\incoming\\dummy.xlsx' -> 'data\\processed\\20250803_145155_dummy.xlsx'
+2025-08-03 14:51:55.368 | ERROR    | __main__:process_file:201 - Traceback (most recent call last):
+  File "C:\Users\yukih\projects\IoT_Monitor\db\scripts\data_processor.py", line 194, in process_file
+    self._move_processed_file(file_path)
+  File "C:\Users\yukih\projects\IoT_Monitor\db\scripts\data_processor.py", line 363, in _move_processed_file
+    Path(file_path).rename(new_path)
+  File "C:\Users\yukih\AppData\Local\Programs\Python\Python311\Lib\pathlib.py", line 1175, in rename
+    os.rename(self, target)
+PermissionError: [WinError 32] プロセスはファイルにアクセスできません。別のプロセスが使用中です。: 'data\\incoming\\dummy.xlsx' -> 'data\\processed\\20250803_145155_dummy.xlsx'
+
+2025-08-03 15:01:17.870 | INFO     | __main__:start:463 - 終了シグナルを受信しました
+2025-08-03 15:01:17.870 | INFO     | __main__:stop:469 - IoTデータ処理システムを停止します
+2025-08-03 15:01:17.871 | INFO     | __main__:disconnect:111 - データベース接続を切断しました
+2025-08-03 15:19:35.866 | INFO     | __main__:start:433 - IoTデータ処理システムを開始します
+2025-08-03 15:19:36.031 | INFO     | __main__:connect:101 - データベースに接続しました
+2025-08-03 15:19:36.032 | INFO     | __main__:_load_tag_cache:127 - 8個のタグ情報をキャッシュしました
+2025-08-03 15:19:36.033 | INFO     | __main__:start:452 - ファイル監視を開始: ./data/incoming
+2025-08-03 15:20:00.720 | INFO     | __main__:on_created:410 - 新規ファイル検出: ./data/incoming\dummy.xlsx
+2025-08-03 15:20:00.721 | INFO     | __main__:process_file:179 - ファイル処理開始: ./data/incoming\dummy.xlsx
+2025-08-03 15:20:00.730 | DEBUG    | __main__:_read_excel_file:219 - 最大列数: 18
+2025-08-03 15:20:00.731 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列4 = Tag0059
+2025-08-03 15:20:00.732 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列6 = Tag0058
+2025-08-03 15:20:00.733 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列8 = Tag0061
+2025-08-03 15:20:00.733 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列10 = Tag0060
+2025-08-03 15:20:00.734 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列12 = Tag0019
+2025-08-03 15:20:00.736 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列14 = Tag0020
+2025-08-03 15:20:00.736 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列16 = Tag0009
+2025-08-03 15:20:00.737 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列18 = Tag0010
+2025-08-03 15:20:00.737 | INFO     | __main__:_read_excel_file:232 - 8個の有効なタグを発見
+2025-08-03 15:20:00.751 | INFO     | __main__:insert_measurements:160 - 384件のデータを挿入しました
+2025-08-03 15:20:00.752 | INFO     | __main__:_read_excel_file:299 - 48行を処理しました
+2025-08-03 15:20:00.753 | ERROR    | __main__:process_file:200 - ファイル処理エラー: ./data/incoming\dummy.xlsx - [WinError 32] プロセスはファイルにアクセスできません。別のプロセスが使用中です。: 'data\\incoming\\dummy.xlsx' -> 'data\\processed\\20250803_152000_dummy.xlsx'
+2025-08-03 15:20:00.753 | ERROR    | __main__:process_file:201 - Traceback (most recent call last):
+  File "C:\Users\yukih\projects\IoT_Monitor\db\scripts\data_processor.py", line 194, in process_file
+    self._move_processed_file(file_path)
+  File "C:\Users\yukih\projects\IoT_Monitor\db\scripts\data_processor.py", line 363, in _move_processed_file
+    Path(file_path).rename(new_path)
+  File "C:\Users\yukih\AppData\Local\Programs\Python\Python311\Lib\pathlib.py", line 1175, in rename
+    os.rename(self, target)
+PermissionError: [WinError 32] プロセスはファイルにアクセスできません。別のプロセスが使用中です。: 'data\\incoming\\dummy.xlsx' -> 'data\\processed\\20250803_152000_dummy.xlsx'
+
+2025-08-03 15:52:25.471 | INFO     | __main__:start:463 - 終了シグナルを受信しました
+2025-08-03 15:52:25.471 | INFO     | __main__:stop:469 - IoTデータ処理システムを停止します
+2025-08-03 15:52:25.471 | INFO     | __main__:disconnect:111 - データベース接続を切断しました
+2025-08-03 15:52:58.880 | INFO     | __main__:start:433 - IoTデータ処理システムを開始します
+2025-08-03 15:52:58.936 | INFO     | __main__:connect:101 - データベースに接続しました
+2025-08-03 15:52:58.936 | INFO     | __main__:_load_tag_cache:127 - 8個のタグ情報をキャッシュしました
+2025-08-03 15:52:58.936 | INFO     | __main__:start:452 - ファイル監視を開始: ./data/incoming
+2025-08-03 15:53:23.932 | INFO     | __main__:on_created:410 - 新規ファイル検出: ./data/incoming\dummy.xlsx
+2025-08-03 15:53:23.932 | INFO     | __main__:process_file:179 - ファイル処理開始: ./data/incoming\dummy.xlsx
+2025-08-03 15:53:23.942 | DEBUG    | __main__:_read_excel_file:219 - 最大列数: 18
+2025-08-03 15:53:23.943 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列4 = Tag0059
+2025-08-03 15:53:23.944 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列6 = Tag0058
+2025-08-03 15:53:23.945 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列8 = Tag0061
+2025-08-03 15:53:23.947 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列10 = Tag0060
+2025-08-03 15:53:23.948 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列12 = Tag0019
+2025-08-03 15:53:23.948 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列14 = Tag0020
+2025-08-03 15:53:23.950 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列16 = Tag0009
+2025-08-03 15:53:23.950 | DEBUG    | __main__:_read_excel_file:228 - タグ発見: 列18 = Tag0010
+2025-08-03 15:53:23.951 | INFO     | __main__:_read_excel_file:232 - 8個の有効なタグを発見
+2025-08-03 15:53:23.967 | INFO     | __main__:insert_measurements:160 - 384件のデータを挿入しました
+2025-08-03 15:53:23.967 | INFO     | __main__:_read_excel_file:299 - 48行を処理しました
+2025-08-03 15:53:23.968 | ERROR    | __main__:process_file:200 - ファイル処理エラー: ./data/incoming\dummy.xlsx - [WinError 32] プロセスはファイルにアクセスできません。別のプロセスが使用中です。: 'data\\incoming\\dummy.xlsx' -> 'data\\processed\\20250803_155323_dummy.xlsx'
+2025-08-03 15:53:23.969 | ERROR    | __main__:process_file:201 - Traceback (most recent call last):
+  File "C:\Users\yukih\projects\IoT_Monitor\db\scripts\data_processor.py", line 194, in process_file
+    self._move_processed_file(file_path)
+  File "C:\Users\yukih\projects\IoT_Monitor\db\scripts\data_processor.py", line 363, in _move_processed_file
+    Path(file_path).rename(new_path)
+  File "C:\Users\yukih\AppData\Local\Programs\Python\Python311\Lib\pathlib.py", line 1175, in rename
+    os.rename(self, target)
+PermissionError: [WinError 32] プロセスはファイルにアクセスできません。別のプロセスが使用中です。: 'data\\incoming\\dummy.xlsx' -> 'data\\processed\\20250803_155323_dummy.xlsx'
+
+2025-08-03 15:56:01.765 | INFO     | __main__:start:463 - 終了シグナルを受信しました
+2025-08-03 15:56:01.765 | INFO     | __main__:stop:469 - IoTデータ処理システムを停止します
+2025-08-03 15:56:01.765 | INFO     | __main__:disconnect:111 - データベース接続を切断しました
