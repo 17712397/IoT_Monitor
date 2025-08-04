@@ -16,15 +16,15 @@ INSERT INTO measure_types (measure_type_name, unit) VALUES
     ('TEMPERATURE', 'C'),
     ('HUMID', '%'),
     ('POWER', 'W'),
-    ('I_POWER', 'Wh');
+    ('I-POWER', 'kWh');
 
 -- タグデータ挿入
 INSERT INTO tags (building_id, location_id, measure_type_id, tag_code, min_value, max_value) VALUES
-    (1, 1, 1, 'Tag0059', 0, 100),
-    (1, 1, 2, 'Tag0058', 0, 100),
-    (1, 2, 1, 'Tag0061', 0, 100),
-    (1, 2, 2, 'Tag0060', 0, 100),
-    (1, 3, 3, 'Tag0019', 0, 1000),
-    (1, 3, 4, 'Tag0020', 0, 10000),
-    (1, 4, 3, 'Tag0009', 0, 1000),
-    (1, 4, 4, 'Tag0010', 0, 10000);
+    (1, 1, 1, 'Tag 0059', 0, 100),
+    (1, 1, 2, 'Tag 0058', 0, 100),
+    (1, 2, 1, 'Tag 0061', 0, 100),
+    (1, 2, 2, 'Tag 0060', 0, 100),
+    (1, 3, 3, 'Tag 0020', 0, 100001),
+    (1, 3, 4, 'Tag 0019', 0, 100001),
+    (1, 4, 4, 'Tag 0009', 0, 100001),
+    (1, 4, 3, 'Tag 0010', 0, 100001);
