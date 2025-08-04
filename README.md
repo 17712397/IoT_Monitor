@@ -1,5 +1,6 @@
 # 手順
 - PCシステム環境変数の設定 `FLASK_APP: superset`, `SUPERSET_CONFIG_PATH: 「superset_config.py格納のパス」`
+- DB仮想環境で読込：`pip install -r requirements.txt`
 
 ### 残課題
 ・DBの日本語文字化け（seed_data.sql）
