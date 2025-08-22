@@ -103,9 +103,9 @@ with psycopg2.connect(**conn_dict) as conn:
         # locations
         for _, row in df_locations.iterrows():
             cur.execute(
-                "INSERT INTO locations (location_id, building_id, location_name, floor_number, is_active, created_at, updated_at) VALUES (%s, %s, %s, %s, %s, DEFAULT, DEFAULT);",
+                "INSERT INTO locations (location_id, building_id, location_name, floor, is_active, created_at, updated_at) VALUES (%s, %s, %s, %s, %s, DEFAULT, DEFAULT);",
                 (int(row["location_id"]), int(row["building_id"]),
-                 row["location_name"], row["floor_number"], row["is_active"])
+                 row["location_name"], row["floor"], row["is_active"])
             )
         # tags
         for _, row in df_tags.iterrows():

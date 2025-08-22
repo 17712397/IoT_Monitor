@@ -13,12 +13,12 @@ CREATE TABLE locations (
     location_id SERIAL PRIMARY KEY,
     building_id INT NOT NULL,
     location_name TEXT NOT NULL,
-    floor_number INT,
+    floor TEXT NOT NULL,
     is_active BOOLEAN DEFAULT TRUE,
     CONSTRAINT fk_building FOREIGN KEY (building_id) REFERENCES buildings(building_id),
     created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE (building_id, location_name, floor_number)
+    UNIQUE (building_id, location_name, floor)
 );
 
 -- 測定種
