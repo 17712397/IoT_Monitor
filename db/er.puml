@@ -15,7 +15,7 @@ entity "locations" {
     building_id: integer <<FK>>  -- 建屋ID (外部キー)
     location_code: varchar(50)   -- 測定箇所コード
     location_name: text          -- 測定箇所名
-    floor_number: integer        -- 階層番号
+    floor: text                  -- 階層番号
     is_active: boolean           -- 有効フラグ
     created_at: timestamptz      -- 作成日時
     updated_at: timestamptz      -- 更新日時
