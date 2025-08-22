@@ -54,6 +54,5 @@ CREATE TABLE measurements (
     timestamp TIMESTAMPTZ NOT NULL,
     tag_id INT NOT NULL,
     value DOUBLE PRECISION NOT NULL,
-    CONSTRAINT fk_tag FOREIGN KEY (tag_id) REFERENCES tags(tag_id),
-    CONSTRAINT  measurements_unique_timestamp_tag UNIQUE (timestamp, tag_id)
-);
+    PRIMARY KEY (timestamp, tag_id)
+) PARTITION BY RANGE (timestamp);
