@@ -2,8 +2,8 @@ import pandas as pd
 import psycopg2
 from openpyxl import load_workbook
 
-EXCEL_PATH = "data/tbl/テーブル設計.xlsm"
-SHEET_NAME = "テーブル"
+EXCEL_PATH = "data/tbl/tbl.xlsx"
+SHEET_NAME = "tbl"
 
 
 def read_named_table(path, sheet, table_name):
