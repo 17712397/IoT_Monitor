@@ -1,3 +1,4 @@
+SET CLIENT_ENCODING TO 'UTF8';
 -- 2024年から2030年までの月単位パーティション作成
 DO $$
 DECLARE
