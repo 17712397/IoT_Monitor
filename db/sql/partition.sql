@@ -41,13 +41,6 @@ BEGIN
                     v_partition_name, v_start_date, v_end_date
                 );
 
-                -- インデックスも同時に作成
-                EXECUTE format('
-                    CREATE INDEX idx_%I_tag_timestamp
-                    ON %I (tag_id, timestamp DESC)',
-                    v_partition_name, v_partition_name
-                );
-
                 v_count := v_count + 1;
                 RAISE NOTICE 'Created partition: % (% to %)',
                     v_partition_name, v_start_date, v_end_date;
