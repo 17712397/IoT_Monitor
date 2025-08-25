@@ -5,7 +5,7 @@ SET CLIENT_ENCODING TO 'UTF8';
 -- 温度
 CREATE MATERIALIZED VIEW mv_temp_1min AS
 SELECT
-    DATE_TRUNC('1 minutes', m.timestamp) AS time_bucket,
+    DATE_TRUNC('minute', m.timestamp) AS time_bucket,
     t.building_id,
     l.location_id,
     l.floor,
@@ -29,7 +29,7 @@ WITH DATA;
 
 CREATE MATERIALIZED VIEW mv_temp_5min AS
 SELECT
-    DATE_TRUNC('5 minutes', m.timestamp) AS time_bucket,
+    to_timestamp(floor(extract(epoch from m.timestamp)/300)*300) AS time_bucket,
     t.building_id,
     l.location_id,
     l.floor,
@@ -54,7 +54,7 @@ WITH DATA;
 -- 湿度
 CREATE MATERIALIZED VIEW mv_humid_5min AS
 SELECT
-    DATE_TRUNC('10 minutes', m.timestamp) AS time_bucket,
+    to_timestamp(floor(extract(epoch from m.timestamp)/300)*300) AS time_bucket,
     t.building_id,
     l.location_id,
     l.floor,
@@ -79,7 +79,7 @@ WITH DATA;
 -- 電力
 CREATE MATERIALIZED VIEW mv_power_1min AS
 SELECT
-    DATE_TRUNC('1 minutes', m.timestamp) AS time_bucket,
+    DATE_TRUNC('minute', m.timestamp) AS time_bucket,
     t.building_id,
     l.location_id,
     l.floor,
@@ -105,7 +105,7 @@ WITH DATA;
 CREATE MATERIALIZED VIEW mv_integrated_power_30min AS
 WITH ranked_data AS (
     SELECT
-        DATE_TRUNC('30 minutes', m.timestamp) AS half_hour_bucket,
+        to_timestamp(floor(extract(epoch from m.timestamp)/1800)*1800) AS half_hour_bucket,
         t.building_id,
         l.location_id,
         l.floor,
@@ -114,8 +114,8 @@ WITH ranked_data AS (
         m.timestamp,
         EXTRACT(DAY FROM m.timestamp) AS day_of_month,
         ROW_NUMBER() OVER (
-            PARTITION BY DATE_TRUNC('30 minutes', m.timestamp), t.tag_id
-            ORDER BY m.timestamp DESC
+            PARTITION BY to_timestamp(floor(extract(epoch from m.timestamp)/1800)*1800), t.tag_id
+s            ORDER BY m.timestamp DESC
         ) AS rn
     FROM measurements m
     JOIN tags t ON m.tag_id = t.tag_id
