@@ -115,7 +115,7 @@ WITH ranked_data AS (
         EXTRACT(DAY FROM m.timestamp) AS day_of_month,
         ROW_NUMBER() OVER (
             PARTITION BY to_timestamp(floor(extract(epoch from m.timestamp)/1800)*1800), t.tag_id
-s            ORDER BY m.timestamp DESC
+            ORDER BY m.timestamp DESC
         ) AS rn
     FROM measurements m
     JOIN tags t ON m.tag_id = t.tag_id
@@ -156,7 +156,7 @@ SELECT
     building_id,
     location_id,
     floor,
-    '温度' AS data_type,
+    '温度_1分' AS data_type,
     avg_value AS value,
     min_value,
     max_value,
@@ -170,7 +170,7 @@ SELECT
     building_id,
     location_id,
     floor,
-    '温度' AS data_type,
+    '温度_5分' AS data_type,
     avg_value AS value,
     min_value,
     max_value,
