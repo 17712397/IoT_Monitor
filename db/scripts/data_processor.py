@@ -171,6 +171,29 @@ class DatabaseManager:
             logger.error(f"データ挿入エラー: {e}")
             raise
 
+    def refresh_materialized_views(self):
+        """マテリアライズドビューの更新"""
+        try:
+            with self.conn.cursor() as cur:
+                # 優先度順に更新
+                views_to_refresh = [
+                    'mv_power_1min',
+                    'mv_temp_1min',
+                    'mv_humid_5min',
+                    'mv_temp_5min',
+                    'mv_integrated_power_30min'
+                ]
+
+                for view in views_to_refresh:
+                    cur.execute(
+                        f"REFRESH MATERIALIZED VIEW {view}")
+                    logger.info(f"更新完了: {view}")
+
+            self.conn.commit()
+        except Exception as e:
+            logger.error(f"MV更新エラー: {e}")
+            self.conn.rollback()
+
 # ===============================================
 # Excel/CSVファイル処理クラス
 # ===============================================
@@ -198,6 +221,9 @@ class DataFileProcessor:
 
             # データをデータベースに保存
             self._save_to_database(data)
+
+            # データ処理後にMVを更新
+            self.db_manager.refresh_materialized_views()
 
             # 処理済みフォルダに移動
             self._move_processed_file(file_path)
