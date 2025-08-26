@@ -7,7 +7,9 @@ CREATE MATERIALIZED VIEW mv_temp_1min AS
 SELECT
     DATE_TRUNC('minute', m.timestamp) AS time_bucket,
     t.building_id,
+    b.building_name,
     l.location_id,
+    l.location_name,
     l.floor,
     t.measure_type_id,
     mt.measure_type_name,
@@ -18,20 +20,23 @@ SELECT
     STDDEV(m.value) AS stddev_value
 FROM measurements m
 JOIN tags t ON m.tag_id = t.tag_id
+JOIN buildings b ON t.building_id = b.building_id
 JOIN locations l ON t.location_id = l.location_id
 JOIN measure_types mt ON t.measure_type_id = mt.measure_type_id
 WHERE
     t.is_active = TRUE
     AND mt.measure_type_name IN ('温度')
     AND m.timestamp >= CURRENT_DATE - INTERVAL '2 years'
-GROUP BY 1, 2, 3, 4, 5, 6
+GROUP BY 1, 2, 3, 4, 5, 6, 7, 8
 WITH DATA;
 
 CREATE MATERIALIZED VIEW mv_temp_5min AS
 SELECT
     to_timestamp(floor(extract(epoch from m.timestamp)/300)*300) AS time_bucket,
     t.building_id,
+    b.building_name,
     l.location_id,
+    l.location_name,
     l.floor,
     t.measure_type_id,
     mt.measure_type_name,
@@ -42,13 +47,14 @@ SELECT
     STDDEV(m.value) AS stddev_value
 FROM measurements m
 JOIN tags t ON m.tag_id = t.tag_id
+JOIN buildings b ON t.building_id = b.building_id
 JOIN locations l ON t.location_id = l.location_id
 JOIN measure_types mt ON t.measure_type_id = mt.measure_type_id
 WHERE
     t.is_active = TRUE
     AND mt.measure_type_name IN ('温度')
     AND m.timestamp >= CURRENT_DATE - INTERVAL '2 years'
-GROUP BY 1, 2, 3, 4, 5, 6
+GROUP BY 1, 2, 3, 4, 5, 6, 7, 8
 WITH DATA;
 
 -- 湿度
@@ -56,7 +62,9 @@ CREATE MATERIALIZED VIEW mv_humid_5min AS
 SELECT
     to_timestamp(floor(extract(epoch from m.timestamp)/300)*300) AS time_bucket,
     t.building_id,
+    b.building_name,
     l.location_id,
+    l.location_name,
     l.floor,
     t.measure_type_id,
     mt.measure_type_name,
@@ -67,13 +75,14 @@ SELECT
     STDDEV(m.value) AS stddev_value
 FROM measurements m
 JOIN tags t ON m.tag_id = t.tag_id
+JOIN buildings b ON t.building_id = b.building_id
 JOIN locations l ON t.location_id = l.location_id
 JOIN measure_types mt ON t.measure_type_id = mt.measure_type_id
 WHERE
     t.is_active = TRUE
     AND mt.measure_type_name IN ('湿度')
     AND m.timestamp >= CURRENT_DATE - INTERVAL '2 years'
-GROUP BY 1, 2, 3, 4, 5, 6
+GROUP BY 1, 2, 3, 4, 5, 6, 7, 8
 WITH DATA;
 
 -- 電力
@@ -81,7 +90,9 @@ CREATE MATERIALIZED VIEW mv_power_1min AS
 SELECT
     DATE_TRUNC('minute', m.timestamp) AS time_bucket,
     t.building_id,
+    b.building_name,
     l.location_id,
+    l.location_name,
     l.floor,
     t.measure_type_id,
     mt.measure_type_name,
@@ -92,13 +103,14 @@ SELECT
     STDDEV(m.value) AS stddev_value
 FROM measurements m
 JOIN tags t ON m.tag_id = t.tag_id
+JOIN buildings b ON t.building_id = b.building_id
 JOIN locations l ON t.location_id = l.location_id
 JOIN measure_types mt ON t.measure_type_id = mt.measure_type_id
 WHERE
     t.is_active = TRUE
     AND mt.measure_type_name IN ('電力')
     AND m.timestamp >= CURRENT_DATE - INTERVAL '2 years'
-GROUP BY 1, 2, 3, 4, 5, 6
+GROUP BY 1, 2, 3, 4, 5, 6, 7, 8
 WITH DATA;
 
 -- 積算電力
@@ -107,7 +119,9 @@ WITH ranked_data AS (
     SELECT
         to_timestamp(floor(extract(epoch from m.timestamp)/1800)*1800) AS half_hour_bucket,
         t.building_id,
+        b.building_name,
         l.location_id,
+        l.location_name,
         l.floor,
         t.tag_id,
         m.value,
@@ -119,6 +133,7 @@ WITH ranked_data AS (
         ) AS rn
     FROM measurements m
     JOIN tags t ON m.tag_id = t.tag_id
+    JOIN buildings b ON t.building_id = b.building_id
     JOIN locations l ON t.location_id = l.location_id
     JOIN measure_types mt ON t.measure_type_id = mt.measure_type_id
     WHERE
@@ -129,7 +144,9 @@ WITH ranked_data AS (
 SELECT
     half_hour_bucket,
     building_id,
+    building_name,
     location_id,
+    location_name,
     floor,
     tag_id,
     value AS last_value,
@@ -153,8 +170,8 @@ CREATE OR REPLACE VIEW v_bi_dashboard AS
 -- 温度
 SELECT
     time_bucket,
-    building_id,
-    location_id,
+    building_name,
+    location_name,
     floor,
     '温度_1分' AS data_type,
     avg_value AS value,
@@ -167,8 +184,8 @@ UNION ALL
 
 SELECT
     time_bucket,
-    building_id,
-    location_id,
+    building_name,
+    location_name,
     floor,
     '温度_5分' AS data_type,
     avg_value AS value,
@@ -182,8 +199,8 @@ UNION ALL
 -- 湿度
 SELECT
     time_bucket,
-    building_id,
-    location_id,
+    building_name,
+    location_name,
     floor,
     '湿度' AS data_type,
     avg_value AS value,
@@ -197,8 +214,8 @@ UNION ALL
 -- 電力
 SELECT
     time_bucket,
-    building_id,
-    location_id,
+    building_name,
+    location_name,
     floor,
     '電力' AS data_type,
     avg_value AS value,
@@ -212,8 +229,8 @@ UNION ALL
 -- 積算電力
 SELECT
     half_hour_bucket AS time_bucket,
-    building_id,
-    location_id,
+    building_name,
+    location_name,
     floor,
     '積算電力' AS data_type,
     last_value AS value,
